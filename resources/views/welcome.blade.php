@@ -13,6 +13,6 @@
         
     </head>
     <body>
-        
+        <h1>Bem vindo aos estudos de laravel 11</h1>
     </body>
 </html>
