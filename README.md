@@ -33,6 +33,11 @@ Executar as migration
 php artisan migrate
 ```
 
+Executar as seed
+```
+php artisan db:seed
+```
+
 Iniciar o projeto criado com Laravel
 ```
 php artisan serve
@@ -91,6 +96,19 @@ php artisan make:model NomeDaModel
 ```
 ```
 php artisan make:model Course
+```
+
+Criar Seeder
+```
+php artisan make:seeder NomeSeeder
+```
+```
+php artisan make:seeder CourseSeeder
+```
+
+Executar as seed
+```
+php artisan db:seed
 ```
 
 
