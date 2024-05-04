@@ -8,16 +8,29 @@ class CourseController extends Controller
 {
     // Listar os cursos
     public function index(){
+
+      // Recuperar os registros do banco de dados
+      // $courses = Course::where('id', 1000)->get();
+      // $courses = course::paginate(10);
+      $courses = Course::orderBy('id', 'DESC')->get();
+
        //carregar a view
-       return view('courses.index');
+      return view('courses.index', ['courses' => $courses]);
+
     }
 
 
     
     // Visualizar os cursos
-    public function show(){
+    public function show(Course $course){
         
-        return view('courses.show');
+      //   dd($request->course);
+      //   Para recuperar co mais de uma condição 
+      //   $course = Course::where('id', $request->course)->first();
+      //   dd($course);
+
+        //carrega a View
+        return view('courses.show', ['course' => $course]);
      }
 
 
