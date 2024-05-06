@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -59,18 +60,26 @@ class CourseController extends Controller
 
 
      // Carrega o formulario para editar
-    public function edit(){
-        
-        return view('courses.edit');
+    public function edit(Course $course){
+
+        // Carrega a view
+        return view('courses.edit', ['course' => $course]);
      }
 
 
 
-     //Edita no Banco de Dados
-     public function update(){
-        
-        dd("Editar o curso no Banco de Dados");
-     }
+      // Editar no banco de dados o curso
+    public function update(Request $request, Course $course){
+
+      // Editar as informações do registro no banco de dados
+      $course->update([
+          'name' => $request->name
+      ]);
+
+      // Redirecionar o usuário, enviar a mensagem de sucesso
+      return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
+      
+  }
  
 
 

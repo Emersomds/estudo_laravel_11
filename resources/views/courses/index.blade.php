@@ -6,7 +6,7 @@
     
     
     <a href="{{route('courses.create') }}">Cadastrar</a> <br>
-    <a href="{{route('courses.edit') }}">Editar</a> <br><br>
+    
 
     
 
@@ -19,6 +19,7 @@
         H:i:s')}}<br>
         
         <a href="{{route('courses.show', ['course' => $course->id ]) }}">Visualizar</a> <br>
+        <a href="{{route('courses.edit', ['course' => $course->id ]) }}">Editar</a>
         <hr>
 
     @empty
