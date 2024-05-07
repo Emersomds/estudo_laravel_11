@@ -84,9 +84,13 @@ class CourseController extends Controller
 
 
      //Exclui no banco de dados
-     public function destroy(){
+     public function destroy(Course $course){
         
-        dd("Exclui o curso no Banco de Dados");
+        //Excluir o registro no banco de dados
+        $course->delete();
+
+        //Redirecionar o usuário, enviar menssagem de sucesso.
+        return redirect()->route('courses.index')->with('success', 'Curso excluido com sucesso!');
      }
  
 }

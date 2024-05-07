@@ -3,8 +3,18 @@
 @section('content')
     <h2>Detalhes do Curso</h2>
 
-    <a href="{{ route('courses.index') }}">Listar</a><br>
-    <a href="{{ route('courses.edit', ['course' => $course->id ]) }}">Editar</a><br><br>
+    <a href="{{ route('courses.index') }}">
+        <button type="button">Listar</button>
+    </a><br><br>
+    <a href="{{route('courses.edit', ['course' => $course->id ]) }}">
+            <button type="button">Editar</button>
+    </a><br><br>
+
+    <form action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja Deletar este registro?')">Apagar</button>
+    </form><br>
 
     @if (session('success'))
         <p style="color: #082">

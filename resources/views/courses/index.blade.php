@@ -5,8 +5,15 @@
     <H2>Listar os cursos</H2>
     
     
-    <a href="{{route('courses.create') }}">Cadastrar</a> <br>
+    <a href="{{route('courses.create') }}">
+        <button type="button">Cadastrar</button>
+    </a> <br>
     
+     @if (session('success'))
+        <p style="color: #082">
+            {{ session('success') }}
+        </p>
+    @endif
 
     
 
@@ -16,10 +23,22 @@
         {{ \Carbon\carbon::parse($course->created_at)->format('d/m/Y
         H:i:s') }}<br>
         {{ \Carbon\carbon::parse($course->updated_at )->format('d/m/Y
-        H:i:s')}}<br>
+        H:i:s')}}<br><br>
         
-        <a href="{{route('courses.show', ['course' => $course->id ]) }}">Visualizar</a> <br>
-        <a href="{{route('courses.edit', ['course' => $course->id ]) }}">Editar</a>
+        <a href="{{route('courses.show', ['course' => $course->id ]) }}">
+            <button type="button">Visualizar</button>
+        </a> <br>
+
+        <a href="{{route('courses.edit', ['course' => $course->id ]) }}">
+            <button type="button">Editar</button>
+        </a><br>
+
+        <form action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja Deletar este registro?')">Apagar</button>
+        </form>
+
         <hr>
 
     @empty
