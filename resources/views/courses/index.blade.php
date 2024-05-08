@@ -18,11 +18,12 @@
     
 
     @forelse ($courses as $course)
-        {{ $course->id }}<br>
-        {{ $course->name }}<br>
-        {{ \Carbon\carbon::parse($course->created_at)->format('d/m/Y
+        ID: {{ $course->id }}<br>
+        Nome: {{ $course->name }}<br>
+        Preço: {{ 'R$ ' . number_format($course->price, 2, ',', '.')}}<br>
+        Cadastrado: {{ \Carbon\carbon::parse($course->created_at)->format('d/m/Y
         H:i:s') }}<br>
-        {{ \Carbon\carbon::parse($course->updated_at )->format('d/m/Y
+        Editado: {{ \Carbon\carbon::parse($course->updated_at )->format('d/m/Y
         H:i:s')}}<br><br>
         
         <a href="{{route('courses.show', ['course' => $course->id ]) }}">

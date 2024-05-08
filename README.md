@@ -111,6 +111,10 @@ Executar as seed
 php artisan db:seed
 ```
 
+Alterando uma tabela adicionando uma nova coluna
+```
+php artisan make:migration alter_courses_add_price_table
+```
 
 ## Como usar o GitHub
 Baixar os arquivos do Git

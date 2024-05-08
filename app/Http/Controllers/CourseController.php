@@ -50,7 +50,8 @@ class CourseController extends Controller
       // Cadastrar no banco de dados na tabela cursos os valores de todos os campos
       // dd($request->name);
       Course::create([
-          'name' => $request->name
+          'name' => $request->name,
+          'price' => $request->price,
       ]);
       
       // Redirecionar o usuário, enviar a mensagem de sucesso
@@ -73,7 +74,8 @@ class CourseController extends Controller
 
       // Editar as informações do registro no banco de dados
       $course->update([
-          'name' => $request->name
+          'name' => $request->name,
+          'price' => $request->price,
       ]);
 
       // Redirecionar o usuário, enviar a mensagem de sucesso
