@@ -10,14 +10,8 @@
     <a href="{{route('courses.show', ['course' => $course->id ]) }}">
             <button type="button">Visualizar</button>
     </a> <br><br>
-    @if ($errors->any())
-        <span style="color: #f00">
-            @foreach ($errors->all() as $error)
-            {{ $error }}
-            @endforeach
-        </span>
-
-    @endif
+    
+    <x-alert />
 
     <form action="{{ route('courses.update', ['course' => $course->id ]) }}" method="POST">
         @csrf

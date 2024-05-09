@@ -98,7 +98,7 @@ php artisan make:model NomeDaModel
 php artisan make:model Course
 ```
 
-Criar Seeder
+Criar Seed
 ```
 php artisan make:seeder NomeSeeder
 ```
@@ -111,14 +111,27 @@ Executar as seed
 php artisan db:seed
 ```
 
-Alterando uma tabela adicionando uma nova coluna
+Rollback (reverter) a migração mais recente
 ```
-php artisan make:migration alter_courses_add_price_table
+php artisan migrate:rollback
 ```
 
-Validando o formulario co o request
+Criar um arquivo de Request com validações
+```
+php artisan make:request NomeDoRequest
+```
 ```
 php artisan make:request CourseRequest
+```
+
+Criar componente
+```
+php artisan make:component nome --view
+```
+```
+php artisan make:component alert --view
+```
+
 ```
 
 ## Como usar o GitHub
