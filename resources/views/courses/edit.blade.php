@@ -10,6 +10,14 @@
     <a href="{{route('courses.show', ['course' => $course->id ]) }}">
             <button type="button">Visualizar</button>
     </a> <br><br>
+    @if ($errors->any())
+        <span style="color: #f00">
+            @foreach ($errors->all() as $error)
+            {{ $error }}
+            @endforeach
+        </span>
+
+    @endif
 
     <form action="{{ route('courses.update', ['course' => $course->id ]) }}" method="POST">
         @csrf
@@ -18,12 +26,12 @@
         <label>Nome: </label>
         <input type="text" name="name" id="name" placeholder="Nome do 
         curso" value="{{ old('name', $course->name)}}" 
-            required><br><br>
+            ><br><br>
 
         <label>Preço: </label>
         <input type="text" name="price" id="price" placeholder="Preço do 
         curso: 2.47" value="{{ old('price', $course->price)}}" 
-            required><br><br>
+            ><br><br>
 
         <button type="submit">Salvar</button>
 

@@ -13,15 +13,24 @@
         </p>
     @endif
 
+    @if ($errors->any())
+        <span style="color: #f00">
+            @foreach ($errors->all() as $error)
+            {{ $error }}
+            @endforeach
+        </span>
+
+    @endif
+
     <form action="{{ route('courses.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <label>Nome: </label>
-        <input type="text" name="name" id="name" placeholder="Nome do curso" value="{{ old('name')}}" required><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome do curso" value="{{ old('name')}}" ><br><br>
 
         <label>Preço: </label>
-        <input type="text" name="price" id="price" placeholder="Preço do curso 2.47" value="{{ old('price')}}" required><br><br>
+        <input type="text" name="price" id="price" placeholder="Preço do curso 2.47" value="{{ old('price')}}" ><br><br>
 
         <button type="submit">Cadastrar</button>
 

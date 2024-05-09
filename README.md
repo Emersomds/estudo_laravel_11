@@ -116,6 +116,11 @@ Alterando uma tabela adicionando uma nova coluna
 php artisan make:migration alter_courses_add_price_table
 ```
 
+Validando o formulario co o request
+```
+php artisan make:request CourseRequest
+```
+
 ## Como usar o GitHub
 Baixar os arquivos do Git
 ```
