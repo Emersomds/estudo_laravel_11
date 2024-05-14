@@ -14,4 +14,11 @@ class Classe extends Model
 
     //indicar quais colunas podem ser cadastradas
     protected $fillable = ['name', 'description', 'course_id'];
+
+    //Criar o relacionamento entre um e muitos
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
 }

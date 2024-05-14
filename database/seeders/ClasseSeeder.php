@@ -19,6 +19,7 @@ class ClasseSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor sit amet, 
                 consectetur adipiscing elit. Mauris consequat 
                 lectus non efficitur rhoncus',
+                'order_classe' => 1,
                 'course_id' => 8,
             ]);
         }
@@ -29,6 +30,7 @@ class ClasseSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor sit amet, 
                 consectetur adipiscing elit. Mauris consequat 
                 lectus non efficitur rhoncus',
+                'order_classe' => 2,
                 'course_id' => 8,
             ]);
         }
