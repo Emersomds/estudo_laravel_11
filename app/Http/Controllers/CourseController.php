@@ -40,7 +40,7 @@ class CourseController extends Controller
      // Carregar o formulario cadastrar novo curso
     public function create(){
         
-        return view('courses.create');
+        return view('course.create');
      }
 
 
@@ -58,7 +58,7 @@ class CourseController extends Controller
       ]);
       
       // Redirecionar o usuário, enviar a mensagem de sucesso
-      return redirect()->route('courses.create')->with('success', 'Curso cadastrado com sucesso!');
+      return redirect()->route('course.create')->with('success', 'Curso cadastrado com sucesso!');
   }
  
 
@@ -85,7 +85,7 @@ class CourseController extends Controller
       ]);
 
       // Redirecionar o usuário, enviar a mensagem de sucesso
-      return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
+      return redirect()->route('course.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
       
   }
  
@@ -98,7 +98,7 @@ class CourseController extends Controller
         $course->delete();
 
         //Redirecionar o usuário, enviar menssagem de sucesso.
-        return redirect()->route('courses.index')->with('success', 'Curso excluido com sucesso!');
+        return redirect()->route('course.index')->with('success', 'Curso excluido com sucesso!');
      }
  
 }

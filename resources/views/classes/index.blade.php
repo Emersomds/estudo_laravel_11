@@ -7,6 +7,10 @@
     <a href="{{ route('course.index') }}">
         <button type="button">Cursos</button>
     </a><br><br>
+    
+    <a href="{{ route('classe.create', ['course' => $course->id]) }}">
+        <button type="button">Cadastrar</button>
+    </a><br><br>
 
     <x-alert />
 

@@ -15,7 +15,7 @@
     <body>
         <h1>Bem vindo aos estudos de laravel 11</h1>
 
-        <a href="{{ route('courses.index') }}">
+        <a href="{{ route('course.index') }}">
         <button type="button">Listar</button>
         </a><br><br>
     </body>
