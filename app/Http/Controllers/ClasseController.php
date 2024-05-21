@@ -22,6 +22,13 @@ class ClasseController extends Controller
         return view('classes.index', ['course'=> $course,'classes' => $classes]);
     }
 
+     // Detalhes da aula
+     public function show(Classe $classe)
+     {
+         // Carregar a VIEW
+         return view('classes.show', ['classe' => $classe]);
+     }
+
     //Carregar o formulario cadstrar nova aula
     public function create(Course $course)
     {
@@ -52,4 +59,28 @@ class ClasseController extends Controller
         // Redirecionar o usuário, e enviar mensagem de sucesso
         return redirect()->route('classe.index', ['course'=> 
         $request->course_id])->with('success', 'Aula cadarstrada com sucesso!');    }
+
+
+        // Carregar o formulario editar aula.
+        public function edit( Classe $classe)
+        {
+            // Carregar a view
+            return view('classes.edit', ['classe' => $classe]);
+        }
+
+        public function update(ClasseRequest $request, Classe $classe)
+        {
+            
+            // Validar o formulario
+            $request->validated();
+            // Editar as informações do registro no banco de dados
+            $classe->update([
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
+
+            // Rediecionar o usuàrio, e enviar mensagem de sucesso
+            return redirect()->route('classe.index', ['course' => $classe->course_id])->with('success', 'Aula editada com sucesso!');
+        }
+
 }

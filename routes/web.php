@@ -22,3 +22,5 @@ Route::get('/index-classe/{course}', [ClasseController::class, 'index'])->name('
 Route::get('/show-classe/{classe}', [classeController::class, 'show'])->name('classe.show');
 Route::get('/create-classe/{course}', [classeController::class, 'create'])->name('classe.create');
 Route::post('/store-classe', [classeController::class, 'store'])->name('classe.store');
+Route::get('/edit-classe/{classe}', [ClasseController::class, 'edit'])->name('classe.edit');
+Route::put('/update-classe/{classe}', [ClasseController::class, 'update'])->name('classe.update');

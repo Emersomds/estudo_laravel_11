@@ -22,6 +22,14 @@
         Curso: {{ $classe->course->name }}<br>
         Cadastrado: {{ \Carbon\Carbon::parse($classe->created_at)->format('d/m/Y H:i:s') }}<br>
         Editado: {{ \Carbon\Carbon::parse($classe->updated_at)->format('d/m/Y H:i:s') }}<br><br>
+
+        <a href="{{ route('classe.show', ['classe' => $classe->id]) }}">
+            <button type="button">Visualizar</button>
+        </a><br><br>
+        
+        <a href="{{ route('classe.edit', ['classe' => $classe->id]) }}">
+            <button type="button">Editar</button>
+        </a><br><br>
     @empty
         <p style="color: #f00">Nenhuma aula encontrada!</p>
     @endforelse
