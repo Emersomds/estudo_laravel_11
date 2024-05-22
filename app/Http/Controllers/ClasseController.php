@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClasseRequest;
 use App\Models\Classe;
 use App\Models\Course;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -81,6 +82,27 @@ class ClasseController extends Controller
 
             // Rediecionar o usuàrio, e enviar mensagem de sucesso
             return redirect()->route('classe.index', ['course' => $classe->course_id])->with('success', 'Aula editada com sucesso!');
+        }
+
+        // Apagar a aula do registro e bd>
+        public function destroy(Classe $classe)
+        {
+
+            try{
+            // Excluir o registro do Banco de dados
+            $classe->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('classe.index', ['course' => $classe->course_id ])->with('success', 'Aula apagada com sucesso!');
+
+            } catch (Exception $e) {
+
+                // Redirecionar o usuário, enviar a mensagem de Erro
+                return redirect()->route('classe.index', ['course' => $classe->course_id ])->with('error', 'Aula não apagada!');
+
+            }
+        
+        
         }
 
 }

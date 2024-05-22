@@ -4,7 +4,7 @@
     </p>
 @endif
 
- @if (session('error'))
+@if (session('error'))
     <p style="color: #f00">
         {{ session('error') }}
     </p>
@@ -13,7 +13,7 @@
 @if ($errors->any())
     <span style="color: #f00">
         @foreach ($errors->all() as $error)
-            {{ $error }}
+            {{ $error }}<br>
         @endforeach
     </span>
 @endif

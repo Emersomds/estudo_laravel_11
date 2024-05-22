@@ -12,6 +12,12 @@
         <button type="button">Editar</button>
     </a><br><br>
 
+    <form action="{{ route('classe.destroy', ['classe' => $classe->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    </form><br>
+
     <x-alert />
 
     ID: {{ $classe->id }}<br>
