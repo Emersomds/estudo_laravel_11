@@ -6,6 +6,7 @@ use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class CourseController extends Controller
@@ -52,15 +53,32 @@ class CourseController extends Controller
 
       $request->validated();
 
-      // Cadastrar no banco de dados na tabela cursos os valores de todos os campos
-      // dd($request->name);
-      Course::create([
-          'name' => $request->name,
-          'price' => $request->price,
-      ]);
-      
-      // Redirecionar o usuário, enviar a mensagem de sucesso
-      return redirect()->route('course.create')->with('success', 'Curso cadastrado com sucesso!');
+      // Marca ponto inicial de uma tarnsação
+      DB::beginTransaction();
+
+      try {
+
+        // Cadastrar no banco de dados na tabela cursos os valores de todos os campos
+        // dd($request->name);
+        Course::create([
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+        
+        // Operação concluida com êxito
+        DB::commit();
+
+        // Redirecionar o usuário, enviar a mensagem de sucesso
+        return redirect()->route('course.create')->with('success', 'Curso cadastrado com sucesso!');
+      } catch (Exception $e){
+
+          // Operação não é concluida com exito
+          DB::rolback;
+
+          // Redirecionar o usuário, enviar a mensagem de erro
+          return back()->withInput()->with('error', 'Aula não cadastrada!');
+
+    }
   }
  
 
@@ -77,38 +95,54 @@ class CourseController extends Controller
       // Editar no banco de dados o curso
     public function update(CourseRequest $request, Course $course){
 
-      //Validar o formulariio
-      $request->validated();
+      // Marca o ponto inicial de uma transação
+      DB::beginTransaction();
 
-      // Editar as informações do registro no banco de dados
-      $course->update([
-          'name' => $request->name,
-          'price' => $request->price,
-      ]);
+      try {
 
-      // Redirecionar o usuário, enviar a mensagem de sucesso
-      return redirect()->route('course.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
-      
+          // Validar o formulário
+          $request->validated();
+
+          // Editar as informações do registro no banco de dados
+          $course->update([
+              'name' => $request->name,
+              'price' => $request->price,
+          ]);
+
+          // Operação é concluída com êxito
+          DB::commit();
+
+          // Redirecionar o usuário, enviar a mensagem de sucesso
+          return redirect()->route('course.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
+      } catch (Exception $e) {
+
+          // Operação não é concluída com êxito
+          DB::rollBack();
+
+          // Redirecionar o usuário, enviar a mensagem de erro
+          return back()->withInput()->with('error', 'Curso não editado!');
+      }
   }
  
 
 
      //Exclui no banco de dados
-     public function destroy(Course $course){
+     public function destroy(Course $course)
+     {
         
-      try {
+        try {
 
-        // Excluir o registro do banco de dados
-        $course->delete();
+          // Excluir o registro do banco de dados
+          $course->delete();
 
-        // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('course.index')->with('success', 'Curso apagado com sucesso!');
-        
-      } catch (Exception $e) {
+          // Redirecionar o usuário, enviar a mensagem de sucesso
+          return redirect()->route('course.index')->with('success', 'Curso apagado com sucesso!');
+          
+        } catch (Exception $e) {
 
-        // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('course.index')->with('error', 'Curso não apagado!');
-      }
+          // Redirecionar o usuário, enviar a mensagem de sucesso
+          return redirect()->route('course.index')->with('error', 'Curso não apagado!');
+        }
 
     }
  

@@ -43,66 +43,101 @@ class ClasseController extends Controller
         //VAlidar o formulario
         $request->validated();
 
-        //Recuperar a última ordem na aula no curso
-        $lastOrderClasse = Classe::where('course_id', $request->course_id)
-            ->orderBy('order_classe', 'DESC')
-            ->first();
+        // Marca o ponto inicial de uma transação
+        DB::beginTransaction();
+
+        try {
+
+            // Recuperar a última ordem da aula no curso
+            $lastOrderClasse = Classe::where('course_id', $request->course_id)
+                ->orderBy('order_classe', 'DESC')
+                ->first();
             // dd($lastOrderClasse);
 
-        //Cadastrar no banco de dados na tabela aulas
-        Classe::create([
-            'name' => $request->name,
-            'description'=> $request->description, 
-            'order_classe'=> $lastOrderClasse ? $lastOrderClasse->order_classe + 1 : 1,
-            'course_id' => $request->course_id,
-        ]);
+            // Cadastrar no banco de dados na tabela aulas
+            Classe::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'order_classe' => $lastOrderClasse ? $lastOrderClasse->order_classe + 1 : 1,
+                'course_id' => $request->course_id
+            ]);
 
-        // Redirecionar o usuário, e enviar mensagem de sucesso
-        return redirect()->route('classe.index', ['course'=> 
-        $request->course_id])->with('success', 'Aula cadarstrada com sucesso!');    }
+            // Operação é concluída com êxito
+            DB::commit();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('classe.index', ['course' => $request->course_id])->with('success', 'Aula cadastrada com sucesso!');
+        } catch (Exception $e) {
+
+            // Operação não é concluída com êxito
+            DB::rollBack();
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Aula não cadastrada!');
+        }   
+    }
 
 
-        // Carregar o formulario editar aula.
-        public function edit( Classe $classe)
-        {
-            // Carregar a view
-            return view('classes.edit', ['classe' => $classe]);
-        }
+    // Carregar o formulario editar aula.
+    public function edit( Classe $classe)
+    {
 
-        public function update(ClasseRequest $request, Classe $classe)
-        {
-            
-            // Validar o formulario
-            $request->validated();
+        // Carregar a view
+        return view('classes.edit', ['classe' => $classe]);
+    }
+
+    public function update(ClasseRequest $request, Classe $classe)
+    {
+
+        // Validar o formulário
+        $request->validated();
+
+        // Marca o ponto inicial de uma transação
+        DB::beginTransaction();
+
+        try {
+
             // Editar as informações do registro no banco de dados
             $classe->update([
                 'name' => $request->name,
                 'description' => $request->description,
             ]);
 
-            // Rediecionar o usuàrio, e enviar mensagem de sucesso
+            // Operação é concluída com êxito
+            DB::commit();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('classe.index', ['course' => $classe->course_id])->with('success', 'Aula editada com sucesso!');
+        } catch (Exception $e) {
+
+            // Operação não é concluída com êxito
+            DB::rollBack();
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Aula não editada!');
         }
+    }
 
-        // Apagar a aula do registro e bd>
-        public function destroy(Classe $classe)
-        {
+    // Apagar a aula do registro e bd>
+        
+    public function destroy(Classe $classe)
+    {
 
-            try{
+        try{
             // Excluir o registro do Banco de dados
             $classe->delete();
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('classe.index', ['course' => $classe->course_id ])->with('success', 'Aula apagada com sucesso!');
 
-            } catch (Exception $e) {
+        } catch (Exception $e) {
 
-                // Redirecionar o usuário, enviar a mensagem de Erro
-                return redirect()->route('classe.index', ['course' => $classe->course_id ])->with('error', 'Aula não apagada!');
+            // Redirecionar o usuário, enviar a mensagem de Erro
+            return redirect()->route('classe.index', ['course' => $classe->course_id ])->with('error', 'Aula não apagada!');
 
-            }
-        
-        
         }
+        
+        
+    }
 
 }
