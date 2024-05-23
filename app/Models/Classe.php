@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classe extends Model
+use \OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class Classe extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, AuditingAuditable;
 
     //Indica o nome da tebela
     protected $table = 'classes';
