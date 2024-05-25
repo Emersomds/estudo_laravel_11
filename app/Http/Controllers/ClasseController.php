@@ -18,7 +18,7 @@ class ClasseController extends Controller
         $classes = Classe::with('course')
             ->where('course_id', $course->id)
             ->orderBy('order_classe')
-            ->get();
+            ->paginate(10);
 
          // Salvar log
         Log::info('Listar aulas.', ['course_id' => $course->id]);
