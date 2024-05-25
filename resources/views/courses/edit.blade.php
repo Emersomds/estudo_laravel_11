@@ -16,16 +16,18 @@
             </ol>
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-4 border-ligth shadow">
 
             <div class="card-header hstack gap-2">
                 <span>Editar</span>
 
                 <span class="ms-auto d-sm-flex flex-row">
 
-                    <a href="{{ route('course.index') }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">Listar</a>
+                    <a href="{{ route('course.index') }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">
+                    <i class="fa-solid fa-list"></i> Listar</a>
 
-                    <a href="{{ route('course.show', ['course' => $course->id]) }}"  class="btn btn-primary btn-sm me-1 mb-1 mb-sm-0">Visualizar</a>
+                    <a href="{{ route('course.show', ['course' => $course->id]) }}"  class="btn btn-primary btn-sm me-1 mb-1 mb-sm-0">
+                    <i class="fa-regular fa-eye"></i></i> Visualizar</a>
 
                 </span>
             </div>
@@ -49,7 +51,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                      <button type="submit" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
                     </div>
 
                 </form>

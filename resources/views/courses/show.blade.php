@@ -13,23 +13,27 @@
             </ol>
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-4 border-ligth shadow">
 
             <div class="card-header hstack gap-2">
                 <span>Visualizar</span>
 
                 <span class="ms-auto d-sm-flex flex-row">
 
-                    <a href="{{ route('classe.index', ['course' => $course->id]) }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">Aulas</a>
+                    <a href="{{ route('classe.index', ['course' => $course->id]) }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">
+                    <i class="fa-solid fa-list"></i> Aulas</a>
 
-                    <a href="{{ route('course.index') }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">Listar</a>
+                    <a href="{{ route('course.index') }}" class="btn btn-info btn-sm me-1 mb-1 mb-sm-0">
+                    <i class="fa-solid fa-list"></i> Listar</a>
 
-                    <a href="{{ route('course.edit', ['course' => $course->id]) }}" class="btn btn-warning btn-sm me-1 mb-1 mb-sm-0">Editar</a>
+                    <a href="{{ route('course.edit', ['course' => $course->id]) }}" class="btn btn-warning btn-sm me-1 mb-1 mb-sm-0">
+                    <i class="fa-regular fa-pen-to-square"></i> Editar</a>
 
                     <form action="{{ route('course.destroy', ['course' => $course->id]) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar este registro?')">
+                        <i class="fa-regular fa-trash-can"></i> Apagar</button>
                     </form>
 
                 </span>
