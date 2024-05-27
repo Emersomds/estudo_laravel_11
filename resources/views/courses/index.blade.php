@@ -12,7 +12,7 @@
             </ol>
         </div>
 
-        <div class="card mb-4 ">
+        <div class="card mb-4 border-ligth shadow">
 
             <div class="card-header hstack gap-2">
                 <span class="mt-3">Listar</span>
