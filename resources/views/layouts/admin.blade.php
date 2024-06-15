@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles_sdadmin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles_admin.css') }}" rel="stylesheet">
+    @vite(['resources/css/app.css','resources/js/app.js'])
+    
+    
+    
     <title>EmySouza</title>
 </head>
 <body class="sb-nav-fixed">
@@ -83,11 +83,5 @@
             </footer>
 
         </div>
-    
-    
-       
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/scripts_sdadmin.js') }}"></script>
-    <script src="{{ asset('js/all.min.js') }}"></script>
 </body>
 </html>

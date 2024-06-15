@@ -13,6 +13,8 @@
 
 * PHP 8.2 ou superior
 * Composer
+* Node.js v20
+* Git
 
 ## Como rodar o projeto baixado
 
@@ -22,6 +24,22 @@ Instalar as dependências do PHP
 ```
 composer install
 ```
+Instalar as dependencias do node.js
+````
+npm install
+````
+Instalar o framework bootstrap
+```
+npm i --save bootstrap @popperjs/core
+```
+Executar as bibliotecas Node.js
+````
+npm run dev
+````
+Instalar o fontAwersome
+````
+npm i --save @fortawesome/fontawesome-free
+````
 
 Gerar a chave
 ```

@@ -1,0 +1,9 @@
+/* Importar o css do layout */
+@import 'styles_sdadmin.css';
+
+/* Importar o css do personalizado layout */
+@import 'styles_admin.css';
+
+/* importar os icon font awersome*/
+
+@import '@fortawesome/fontawesome-free/css/all.css';
